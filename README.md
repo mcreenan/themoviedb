@@ -1,4 +1,4 @@
-TvDb
+TheMovieDb
 ====
 
 A very minimal lient for themoviedb API (http://docs.themoviedb.apiary.io), only supporting the following functions:
