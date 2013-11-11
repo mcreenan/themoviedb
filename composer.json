@@ -1,0 +1,20 @@
+{
+    "name": "sgoen/themoviedb",
+    "description": "",
+    "keywords": ["API"],
+    "homepage": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sGoen",
+            "email": "github@sgoen.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": { "sgoen\\themoviedb": "src" }
+    }
+}
