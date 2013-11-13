@@ -27,19 +27,19 @@ class Movie
 	public $title;
 	public $vote_average;
 	public $vote_count;
-	
-	public function __construct($decoded)
+
+	public function __construct($data)
 	{
-		$this->fromArray($decoded);
+		$this->fromArray($data);
 	}
 
 	public function fromArray($arr)
 	{
-		foreach(get_class_vars(get_class($this)) as $key => $value)
+		foreach($arr as $key => $value)
 		{
-			if(isset($arr[$key]))
+			if(property_exists(__CLASS__, $key))
 			{
-				$this->$key = $arr[$key];
+				$this->$key = $value;
 			}
 		}
 	}
