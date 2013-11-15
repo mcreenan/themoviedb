@@ -7,11 +7,11 @@ use sgoen\themoviedb\Configuration;
 
 class ConfigurationService extends AbstractService
 {
-	public function getConfiguration()
-	{
-		$response = $this->_request("/configuration?api_key={$this->_apiKey}");
-		$configuration = new Configuration($response);
+    public function getConfiguration()
+    {
+        $response = $this->_request("/configuration?api_key={$this->_apiKey}");
+        $configuration = new Configuration($response);
 
-		return $configuration;
-	}
+        return $configuration;
+    }
 }

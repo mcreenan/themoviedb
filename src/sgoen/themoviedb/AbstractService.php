@@ -12,56 +12,53 @@ use sgoen\themoviedb\JSONDecodeException;
  */
 abstract class AbstractService
 {
-	protected $_apiKey;
-	protected $_apiBaseUrl;
+    protected $_apiKey;
+    protected $_apiBaseUrl;
 
-	/**
-	 * @param string $apiKey
-	 * @param string $apiBaseUrl
-	 */
-	public function __construct($apiKey, $apiBaseUrl)
-	{
-		$this->_apiKey = $apiKey;
-		$this->_apiBaseUrl = $apiBaseUrl;
-	}
-	
-	/**
-	 * Request the given url and return the decoded result. Throws an exception if one
-	 * of the steps fails.
-	 *
-	 * @param  string $url The url which should be requested
-	 * @return array       The result as array
-	 * @throws CurlException          When the request through curl fails.
-	 * @throws JSONDecodeException    When the reponse can't be decoded.
-	 * @throws TheMovieDbAPIException When the api response contains an error message.
-	 */
-	protected function _request($uri)
-	{
-		$url = "{$this->_apiBaseUrl}{$uri}";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HEADER, FALSE);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+    /**
+     * @param string $apiKey
+     * @param string $apiBaseUrl
+     */
+    public function __construct($apiKey, $apiBaseUrl)
+    {
+        $this->_apiKey = $apiKey;
+        $this->_apiBaseUrl = $apiBaseUrl;
+    }
 
-		$response = curl_exec($ch);
-		if($response === false)
-		{
-			throw new CurlException("Unable to complete curl request for url: '{$url}'");
-		}
+    /**
+     * Request the given url and return the decoded result. Throws an exception if one
+     * of the steps fails.
+     *
+     * @param  string $url The url which should be requested
+     * @return array       The result as array
+     * @throws CurlException          When the request through curl fails.
+     * @throws JSONDecodeException    When the reponse can't be decoded.
+     * @throws TheMovieDbAPIException When the api response contains an error message.
+     */
+    protected function _request($uri)
+    {
+        $url = "{$this->_apiBaseUrl}{$uri}";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
 
-		curl_close($ch);
-		$decoded = json_decode($response, true);
-		if($decoded === null)
-		{
-			throw new JSONDecodeException();
-		}	
-		
-		if(isset($decoded['status_code']))
-		{
-			throw new TheMovieDbAPIException($decoded['status_message'], $decoded['status_code']);
-		}
+        $response = curl_exec($ch);
+        if ($response === false) {
+            throw new CurlException("Unable to complete curl request for url: '{$url}'");
+        }
 
-		return $decoded;
-	}
+        curl_close($ch);
+        $decoded = json_decode($response, true);
+        if ($decoded === null) {
+            throw new JSONDecodeException();
+        }
+
+        if (isset($decoded['status_code'])) {
+            throw new TheMovieDbAPIException($decoded['status_message'], $decoded['status_code']);
+        }
+
+        return $decoded;
+    }
 }
