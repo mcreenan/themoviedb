@@ -8,9 +8,11 @@ class Movie
     public $backdrop_path;
     public $belongs_to_collection;
     public $budget;
+    public $credits;
     public $genres;
     public $homepage;
     public $id;
+    public $images;
     public $imdb_id;
     public $original_title;
     public $overview;

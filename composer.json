@@ -8,6 +8,10 @@
         {
             "name": "sGoen",
             "email": "github@sgoen.nl"
+        },
+        {
+            "name": "Matt Creenan",
+            "email": "mattcreenan@gmail.com"
         }
     ],
     "minimum-stability": "dev",
