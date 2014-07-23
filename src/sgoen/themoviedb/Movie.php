@@ -27,6 +27,7 @@ class Movie
     public $status;
     public $tagline;
     public $title;
+    public $videos;
     public $vote_average;
     public $vote_count;
 

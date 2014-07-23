@@ -9,7 +9,7 @@ class MovieService extends AbstractService
 {
     public function getMovieById($id)
     {
-        $response = $this->_request("/movie/{$id}?api_key={$this->_apiKey}&append_to_response=credits,images");
+        $response = $this->_request("/movie/{$id}?api_key={$this->_apiKey}&append_to_response=credits,images,videos");
         $movie = new Movie($response);
 
         return $movie;
